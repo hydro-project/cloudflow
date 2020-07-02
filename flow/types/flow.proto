@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+enum ProtoType {
+  INT = 0;
+
+  FLOWSTRING = 1;
+
+  BOOL = 2;
+
+  BYTES = 3;
+
+  FLOAT = 4;
+
+  FLOWNUMPY = 5;
+}
+
+
+message ProtoSchema {
+  message Column {
+    ProtoType type = 1;
+
+    string name = 2;
+  }
+
+  repeated Column columns = 1;
+}
+
+message ProtoTable {
+  message Row {
+    int64 qid = 1;
+
+    repeated bytes values = 2;
+  }
+
+  ProtoSchema schema = 1;
+
+  repeated Row rows = 2;
+}
